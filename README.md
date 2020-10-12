@@ -19,10 +19,13 @@ Bonus: Response movement of the central character
 
 How will you architect the game? Will it use vanilla JS, HTML, and CSS or will you use a library like three.js? Will you use any other libraries or API's? Summarize the technical challenges you anticipate and how you plan to solve them.
 
-### Wireframes
+### Wireframe
 
 ![](src/images/Homepage.png)
 
 ### Implementation Timeline
-
-
+ 
+Monday: general Layout, Github, Linkedin, Game description
+Tuesday: Stick figure, start arrows  
+Wednesday: finish arrows, combo
+Thursday: Music
