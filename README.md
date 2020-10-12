@@ -18,11 +18,7 @@ How will you architect the game? Will it use vanilla JS, HTML, and CSS or will y
 
 ### Wireframes
 
-This will be a lot less involved than for your Full Stack Project, but make sure you have drawings for each view, including modals.
-
-### Backend
-If you want to persist data, use Google Firebase and describe what you want to save.
 
 ### Implementation Timeline
-This will be the road map for your application. You have about three days for this project. Refer to your MVP and group the features into three phases. Break down each phase into several sub-tasks to keep yourself organized.
+
 
