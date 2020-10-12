@@ -1,23 +1,27 @@
-class Square {
-  constructor(ctx, coords, color = "green") {
+class leftArrow {
+  constructor(ctx, coords, color = "red") {
     this.ctx = ctx;
     this.coords = coords;
     this.color = color;
-    this.animationDir = 1;
+    // this.animationDir = -1;
   }
 
-  drawSquare() {
+  drawleftArrow() {
     this.ctx.fillStyle = this.color;
-    this.ctx.fillRect(...this.coords);
+
   }
-  updateSquare(color) {
+  moveleftArrow(color) {
     this.color = color;
     this.coords = this.coords.map((coord) => (coord += 1 * this.animationDir));
   }
 
-  reverseAnimation() {
+  destroyleftArrow() {
     this.animationDir *= -1;
+  }
+
+  speedupleftArrow() {
+
   }
 }
 
-export default Square;
+export default leftArrow;
