@@ -25,7 +25,7 @@ How will you architect the game? Will it use vanilla JS, HTML, and CSS or will y
 
 ### Implementation Timeline
  
-Monday: general Layout, Github, Linkedin, Game description
-Tuesday: Stick figure, start arrows  
-Wednesday: finish arrows, combo
-Thursday: Music
+* Monday: general Layout, Github, Linkedin, Game description
+* Tuesday: Stick figure, start arrows  
+* Wednesday: finish arrows, combo
+* Thursday: Music
