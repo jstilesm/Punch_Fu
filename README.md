@@ -18,6 +18,7 @@ How will you architect the game? Will it use vanilla JS, HTML, and CSS or will y
 
 ### Wireframes
 
+![](images/Homepage.png)
 
 ### Implementation Timeline
 
