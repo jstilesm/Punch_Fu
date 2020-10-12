@@ -16,7 +16,7 @@ class leftArrow {
   }
 
   destroyleftArrow() {
-    this.animationDir *= -1;
+    
   }
 
   speedupleftArrow() {

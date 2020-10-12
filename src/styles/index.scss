@@ -1,0 +1,83 @@
+
+@import 'https://fonts.googleapis.com/css?family=Press Start 2P';
+
+
+
+.game-box {
+  background-color: white;
+
+  width: 1200px;
+  height: 800px;
+  
+  border: 1px solid black;
+  border-radius: 10px;
+  box-sizing: border-box;
+  box-shadow: 0 0 8px 0 rgba(0,0,0,0.25);
+  display: flex;
+
+  margin-left: 500px;
+  margin-top: 150px;
+
+}
+
+
+body {
+    font-family: 'Press Start 2P';
+    font-size: 22px;
+}
+.fight {
+  /* background:url(../images/fight.png); */
+ 
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  margin-left: 550px;
+  margin-top: 375px;
+  outline: none;
+}
+
+
+.title {
+  font-family: 'Press Start 2P';
+  display: flex;
+  margin-left: 550px;
+  color: black;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.subheader {
+  display: -webkit-inline-box;
+  margin-left: 550px;
+}
+
+.git-image {
+  width: 8%;
+
+  margin-left: 300px;
+  margin-bottom: 20px;
+}
+
+.linkedin-image{
+  width: 8%;
+  margin-left: 15px;
+  margin-bottom: 20px;
+
+}
+
+.summary {
+  position: absolute;
+  left: 100px;
+  top: -125px;
+  width: 300px;
+  font-size: 20px;
+  display: flex;
+  margin-top: 500px;
+  p {
+    margin-top: 100px;
+  }
+
+}
+

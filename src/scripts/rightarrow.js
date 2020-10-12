@@ -24,4 +24,4 @@ class rightArrow {
   }
 }
 
-export default leftArrow;
+export default rightArrow;
