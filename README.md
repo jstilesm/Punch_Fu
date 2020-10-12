@@ -17,7 +17,9 @@ Bonus: Response movement of the central character
 
 ### Technologies, Libraries, APIs
 
-How will you architect the game? Will it use vanilla JS, HTML, and CSS or will you use a library like three.js? Will you use any other libraries or API's? Summarize the technical challenges you anticipate and how you plan to solve them.
+Pure Javacript to generate the game mechanics.
+Will use canvas elements to render and move the center character as well as the arrows over time. Will use collision detection with the "attack squares" of the center character.
+JS animate will be used as well.
 
 ### Wireframe
 
