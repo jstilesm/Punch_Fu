@@ -1,7 +1,7 @@
 {
-  "name": "js_project_skeleton",
+  "name": "Dodge_Fu",
   "version": "1.0.0",
-  "description": "skeleton for new JS project",
+  "description": "keyboard reaction game",
   "main": "index.js",
   "browserslist": [
     "last 1 version",
@@ -14,7 +14,7 @@
     "webpack:watch": "webpack --watch --config webpack.dev.js",
     "webpack:build": "webpack --config webpack.prod.js  --optimize-minimize"
   },
-  "author": "mrcjbradley",
+  "author": "nstilesm",
   "license": "ISC",
   "dependencies": {},
   "devDependencies": {
