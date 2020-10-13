@@ -19,6 +19,7 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  z-index: 999;
 
 }
 
@@ -36,6 +37,33 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+
+}
+
+.leftredbox {
+  position: absolute;
+  width: 100px; 
+  height: 200px; 
+  border: red;
+  background-color: red;
+  z-index: 2;
+  opacity: 0.2;
+  top: 66%;
+  left: 42%;
+  border-radius: 30px;
+
+}
+.rightredbox {
+  position: absolute;
+  width: 100px; 
+  height: 200px; 
+  border: red;
+  background-color: red;
+  z-index: 2;
+  opacity: 0.2;
+  top: 66%;
+  left: 50%;
+  border-radius: 30px;
 
 }
 
@@ -60,30 +88,32 @@ body {
 
 .title {
   font-family: 'Press Start 2P';
-  display: flex;
-  margin-left: 650px;
+  position:absolute;
   color: black;
   font-weight: bold;
   font-size: 30px;
+  left: 25%;
+  
 }
 
 .subheader {
-  display: -webkit-inline-box;
-  margin-left: 650px;
-  display: flex;
+  position:absolute;
+  left: 25%;
+  top: 5%;
+  a {
+    position: relative;
+  }
 }
 
 .git-image {
   width: 8%;
 
-  margin-left: 300px;
-  margin-bottom: 20px;
+  
 }
 
 .linkedin-image{
   width: 8%;
-  margin-left: 15px;
-  margin-bottom: 20px;
+  
 
 }
 

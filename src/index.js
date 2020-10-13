@@ -75,9 +75,17 @@ function addArrow(direction) {
 addArrow('right');
 addArrow('left');
 
+ 
+// ctx.lineWidth = "3";
+// ctx.strokeStyle = "red";
+// ctx.rect(5, 5, 140 , 200);
+// ctx.stroke();
+
+
 function animate() {
   ctx.clearRect(0,0, canvas.width, canvas.height);
-  // ctx.drawImage(arrow, position, 0, canvas.width, canvas.height);
+
+  
   ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
   // position++;
   drawSprite(
@@ -160,7 +168,7 @@ function punch(){
   }
   else if (keys[37] && samurai.currentAction != 37) {
       samurai.currentAction = 37;
-      samurai.animationFrames = [[5,1],[4, 1],[3.05, 1]];
+      samurai.animationFrames = [[5,1],[5,1],[5,1],[4,1],[4,1],[4, 1],[3.05, 1],[3.05, 1],[3.05, 1]];
   } else {
     const frame = samurai.animationFrames.pop(0);
     if (frame) {
