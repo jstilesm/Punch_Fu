@@ -72,8 +72,7 @@ function addArrow(direction) {
   }
   arrows.push(arrow);
 }
-addArrow('right');
-addArrow('left');
+
 
  
 // ctx.lineWidth = "3";
@@ -81,14 +80,30 @@ addArrow('left');
 // ctx.rect(5, 5, 140 , 200);
 // ctx.stroke();
 
+let shotspeed = Math.floor(Math.random()* 5000);
+let shotspeed2 = Math.floor(Math.random()* 5000);
+setInterval(() => {
+  addArrow('right'); 
+  addArrow('left');
+  } ,shotspeed);
+
+setInterval(() => {
+  addArrow('right'); 
+  addArrow('left');
+  } ,shotspeed2);
+
 
 function animate() {
   ctx.clearRect(0,0, canvas.width, canvas.height);
-
+  // setTimeout(() => {
+  // addArrow('right'); 
+  // addArrow('left');
+  // } ,5000);
+  
   
   ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
   // position++;
-  drawSprite(
+  drawSprite (
       samuraiSprite, 
       samurai.width * samurai.frameX, 
       samurai.height * samurai.frameY, 
