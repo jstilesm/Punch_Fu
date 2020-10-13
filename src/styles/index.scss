@@ -4,19 +4,38 @@
 
 
 .game-box {
-  background-color: white;
+  
+  background-size: cover;
 
-  width: 1200px;
-  height: 800px;
+  width: 1600px;
+  height: 1000px;
   
   border: 1px solid black;
   border-radius: 10px;
   box-sizing: border-box;
   box-shadow: 0 0 8px 0 rgba(0,0,0,0.25);
-  display: flex;
+  position: absolute;
 
-  margin-left: 500px;
-  margin-top: 150px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+}
+
+#samurai {
+  background-color: black;
+  background-size: cover;
+  z-index: -1;
+
+  width: 1600px;
+  height: 1000px;
+  border: 1px solid black;
+  border-radius: 10px;
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 
 }
 
@@ -27,22 +46,22 @@ body {
 }
 .fight {
   /* background:url(../images/fight.png); */
- 
-  display: flex; 
-  align-items: center;
-  justify-content: center;
-  align-items: center;
+  
+
+  border-radius: 8px;
   height: 50px;
-  margin-left: 550px;
-  margin-top: 375px;
+  position: absolute;
+  left: 50%;
+  top: 25%;
   outline: none;
+  transform: translate(-50%, -50%);
 }
 
 
 .title {
   font-family: 'Press Start 2P';
   display: flex;
-  margin-left: 550px;
+  margin-left: 650px;
   color: black;
   font-weight: bold;
   font-size: 30px;
@@ -50,7 +69,8 @@ body {
 
 .subheader {
   display: -webkit-inline-box;
-  margin-left: 550px;
+  margin-left: 650px;
+  display: flex;
 }
 
 .git-image {
