@@ -46,22 +46,27 @@ const arrows = [];
 
 function addArrow(direction) {
   const arrowSprite = new Image();
-  arrowSprite.src = "src/images/arrow.png";
+  if (direction === "right") {
+    arrowSprite.src = "src/images/arrow2.png";
+  } else {
+    arrowSprite.src = "src/images/arrow.png";
+  }
+  
 
   const arrow = {
     sprite: arrowSprite,
     x: 0,
-    y: canvas.height - 200,
-    width: 58,
-    height: 286,
-    speed: .5,
+    y: canvas.height - 250,
+    width: 286,
+    height: 58,
+    speed: 1,
   };
   if (direction === "left") {
   
     arrow.x = 0;
  
   } else {
-    arrow.x = canvas.width;
+    arrow.x = canvas.width - 50;
     
     arrow.speed = arrow.speed *  -1;
   }
@@ -98,11 +103,12 @@ function animate() {
       arrow.height,
       arrow.x, 
       arrow.y, 
-      .3333*arrow.height, 
-      .5*arrow.width
+      .8* arrow.height, 
+      .1*arrow.width
 
       );
     }
+    
   // console.log(keys);
   
   punch();
