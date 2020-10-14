@@ -58,7 +58,7 @@ function addArrow(direction) {
     y: canvas.height - 250,
     width: 286,
     height: 58,
-    speed: 1,
+    speed: 5,
   };
   if (direction === "left") {
   
@@ -76,13 +76,9 @@ const gameoverImage = new Image();
 gameoverImage.src = "src/images/gameover.png";
 
 
-function gameOver(){
-  if (samurai.health <= 0) {
-    game = "done";
-  }
-}
 
 
+let score = 0;
 
 
 
@@ -150,13 +146,19 @@ function animate() {
       samurai.health -= 1;
       arrows.shift();
       console.log(arrows);
-      gameOver();
+      // gameOver();
     };
     
+  }
+ 
+  if (samurai.health <= 0) {
+    game = "done";
+
   }
   if (game === "ongoing") {
     requestAnimationFrame(animate);
   } else {
+    // debugger
     ctx.clearRect(0,0, canvas.width, canvas.height);
     ctx.drawImage(gameoverImage, 0, 0, canvas.width, canvas.height);
   }
@@ -172,6 +174,7 @@ window.addEventListener("keydown", function(e) {
 window.addEventListener("keyup", function(e) {
   delete keys[e.keyCode];
 });
+
 
 
 

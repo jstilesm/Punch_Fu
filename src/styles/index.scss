@@ -24,7 +24,7 @@
 }
 
 #samurai {
-  background-color: black;
+  background-color: white;
   background-size: cover;
   z-index: -1;
 
@@ -78,10 +78,10 @@ body {
   
 
   border-radius: 8px;
-  height: 50px;
+  height: 100px;
   position: absolute;
   left: 50%;
-  top: 25%;
+  top: 50%;
   outline: none;
   transform: translate(-50%, -50%);
 }
@@ -92,30 +92,33 @@ body {
 .title {
   font-family: 'Press Start 2P';
   position:absolute;
-  color: black;
+  color: white;
   font-weight: bold;
-  font-size: 30px;
-  left: 25%;
+  font-size: 50px;
+  left: 43%;
   
 }
 
+.whole {
+  background-color: black;
+}
 .subheader {
+  color: white;
   position:absolute;
-  left: 25%;
-  top: 5%;
+  left: 90%;
   a {
     position: relative;
   }
 }
 
 .git-image {
-  width: 8%;
+  width: 20%;
 
   
 }
 
 .linkedin-image{
-  width: 8%;
+  width: 20%;
   
 
 }
@@ -124,9 +127,10 @@ body {
   position: absolute;
   left: 100px;
   top: -125px;
-  width: 300px;
+  width: 500px;
   font-size: 20px;
   display: flex;
+  color: white;
   margin-top: 500px;
   p {
     margin-top: 100px;
