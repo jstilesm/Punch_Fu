@@ -17,12 +17,11 @@ const samurai = {
     frameX: 0,
     frameY: 0,
     speed: 9,
+    health: 10,
     moving: false,
     currentAction: null,
     animationFrames: [],
 };
-
-
 
 
 const samuraiSprite = new Image();
@@ -73,15 +72,24 @@ function addArrow(direction) {
   arrows.push(arrow);
 }
 
+const gameoverImage = new Image();
+gameoverImage.src = "src/images/gameover.png";
 
- 
-// ctx.lineWidth = "3";
-// ctx.strokeStyle = "red";
-// ctx.rect(5, 5, 140 , 200);
-// ctx.stroke();
 
-let shotspeed = Math.floor(Math.random()* 5000);
-let shotspeed2 = Math.floor(Math.random()* 5000);
+function gameOver(){
+  if (samurai.health <= 0) {
+    game = "done";
+  }
+}
+
+
+
+
+
+let shotspeed = 2000 + Math.floor(Math.random()* 3000);
+
+let shotspeed2 = shotspeed + 2000;
+
 setInterval(() => {
   addArrow('right'); 
   addArrow('left');
@@ -94,6 +102,7 @@ setInterval(() => {
 
 
 function animate() {
+  let game = "ongoing"
   ctx.clearRect(0,0, canvas.width, canvas.height);
   // setTimeout(() => {
   // addArrow('right'); 
@@ -132,10 +141,25 @@ function animate() {
       );
     }
     
+  
   // console.log(keys);
   
   punch();
-  requestAnimationFrame(animate);
+  for (let i = 0; i < arrows.length; i++) {
+    if (samurai.x === arrows[i].x || samurai.x + samurai.width === arrows[i].x) {
+      samurai.health -= 1;
+      arrows.shift();
+      console.log(arrows);
+      gameOver();
+    };
+    
+  }
+  if (game === "ongoing") {
+    requestAnimationFrame(animate);
+  } else {
+    ctx.clearRect(0,0, canvas.width, canvas.height);
+    ctx.drawImage(gameoverImage, 0, 0, canvas.width, canvas.height);
+  }
 
 }
 
@@ -148,6 +172,9 @@ window.addEventListener("keydown", function(e) {
 window.addEventListener("keyup", function(e) {
   delete keys[e.keyCode];
 });
+
+
+
 
 
 // key: frameX, frame Y
