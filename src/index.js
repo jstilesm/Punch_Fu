@@ -10,6 +10,7 @@ canvas.height = 1000;
 
 
 
+
 const keys = [];
 
 const samurai = {
@@ -29,6 +30,21 @@ const samurai = {
 
 // Setting up images
 
+function sound(src) {
+  this.sound = document.createElement("audio");
+  this.sound.src = src;
+  this.sound.setAttribute("preload", "auto");
+  this.sound.setAttribute("controls", "none");
+  this.sound.style.display = "none";
+  document.body.appendChild(this.sound);
+  this.play = function(){
+    this.sound.play();
+  };
+  this.stop = function(){
+    this.sound.pause();
+  };
+}
+
 
 const samuraiSprite = new Image();
 samuraiSprite.src = "src/images/Samurai.png";
@@ -44,6 +60,13 @@ healthSprite.src = "src/images/health.png";
 
 const gameoverImage = new Image();
 gameoverImage.src = "src/images/gameover.png";
+
+
+const soundTrack = new sound("../src/sound/game.mp3");
+const hitSound = new sound("../src/sound/hit.mp3");
+const missSound = new sound("../src/sound/miss.mp3");
+const hurtSound = new sound("../src/sound/hurt.mp3");
+
 
 
 // DrawSprite function that allows multiple parts of an image to render
@@ -123,7 +146,7 @@ const health = {
 
 function addArrows() {
   let shotspeed = 2000 + Math.floor(Math.random()* 3000);
-  let shotspeed2 = shotspeed + 1000; 
+  let shotspeed2 = shotspeed + 2000; 
 
     setInterval(() => {
 
@@ -134,22 +157,46 @@ function addArrows() {
       addArrow('right'); 
       } ,shotspeed2);
 }
-addArrows();
+// addArrows();
 
 // Main animate function that runs the game
 
 // frame counter and after a certain ammount of frames
-let marker = 5;
+let marker = 0;
+let healthAdd = 0;
+let musicOn = true;
+let soundEffects = true;
 
 
 function animate() {
+  if (musicOn) {
+    soundTrack.play();
+
+  }
+  if (keys[80]) {
+    soundTrack.stop();
+    musicOn = false;
+  } else if (keys[79]) {
+    musicOn = true;
+  }
+  if (keys[73]) {
+    soundEffects = false;
+  }
+
+  if (keys[85]) {
+    soundEffects = true;
+  }
+  marker += 1;
+  if (marker % 800 === 0) {
+    addArrows();
+  }
   // console.log(arrows[0].speed);
   // if (score >= marker) {
     
   //   arrow.speed += 5;
   //   marker += 5;
   // }
-  addArrows();
+ 
   
   let game = "ongoing";
 
@@ -162,6 +209,11 @@ function animate() {
   ctx.textAlign = "center";
   ctx.fillText("Score;", canvas.width/2, canvas.height/2 - 100);
   ctx.fillText(score, canvas.width/2, canvas.height/2 - 50);
+
+  // Add event listener to canvas element 
+ 
+
+
   // ctx.fillText("HP", canvas.width/2 + 5, canvas.height/2 + 150);  
   currentHp();
   drawSprite (
@@ -203,16 +255,31 @@ function animate() {
   
         arrows.shift();
         samurai.health += 1;
+        healthAdd = 0;
+        if (soundEffects) {
+          hurtSound.play();
+        }
       }
     else if (samurai.x + 10 === arrows[i].x || (samurai.x + 155 + samurai.width === arrows[i].x)) {
       if (samurai.currentAction === 39 || samurai.currentAction === 37) {
 
         arrows.shift();
+        if (soundEffects) {
+          hitSound.play();
+        }
         score += 1;
+        healthAdd += 1;
+        if (healthAdd % 10 === 0 && samurai.heath != 5) {
+          samurai.health -= 1;
+        } 
+      }
+    } else {
+      if (soundEffects) {
+        missSound.play();
       }
     }
   }
-
+  
   
 
   // console.log(score);
@@ -223,6 +290,7 @@ function animate() {
   if (game === "ongoing") {
     requestAnimationFrame(animate);
   } else {
+    soundTrack.stop();
     // debugger
     ctx.clearRect(0,0, canvas.width, canvas.height);
     ctx.fillStyle = "black";
@@ -235,7 +303,7 @@ function animate() {
 window.addEventListener("keydown", function(e) {
   // debugger
   keys[e.keyCode] = true;
-  // console.log(keys);
+  console.log(keys);
 });
 
 window.addEventListener("keyup", function(e) {
@@ -281,6 +349,7 @@ function punch(){
       
   }
   else if (keys[37] && samurai.currentAction != 37) {
+    
       samurai.currentAction = 37;
       samurai.animationFrames = [left1, left1, left1, left2, left2, left2, left3,left3, left3];
   } else {
@@ -298,6 +367,7 @@ function punch(){
       
     }
   }
+  
 }
 
 
