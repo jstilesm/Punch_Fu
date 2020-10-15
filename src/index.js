@@ -24,6 +24,7 @@ const samurai = {
     moving: false,
     currentAction: null,
     animationFrames: [],
+    punchOffset: 0
 };
 
 // Setting up images
@@ -118,26 +119,38 @@ const health = {
   // 109 220 330 440
 // Shooting arrows 
 
-let shotspeed = 2000 + Math.floor(Math.random()* 3000);
 
-let shotspeed2 = shotspeed + 2000;
 
-setInterval(() => {
-  addArrow('right'); 
-  addArrow('left');
-  } ,shotspeed);
+function addArrows() {
+  let shotspeed = 2000 + Math.floor(Math.random()* 3000);
+  let shotspeed2 = shotspeed + 1000; 
 
-setInterval(() => {
-  addArrow('right'); 
-  addArrow('left');
-  } ,shotspeed2);
+    setInterval(() => {
 
+      addArrow('left');
+      } ,shotspeed);
+
+    setInterval(() => {
+      addArrow('right'); 
+      } ,shotspeed2);
+}
+addArrows();
 
 // Main animate function that runs the game
 
-function animate() {
- 
+// frame counter and after a certain ammount of frames
+let marker = 5;
 
+
+function animate() {
+  // console.log(arrows[0].speed);
+  // if (score >= marker) {
+    
+  //   arrow.speed += 5;
+  //   marker += 5;
+  // }
+  addArrows();
+  
   let game = "ongoing";
 
   ctx.clearRect(0,0, canvas.width, canvas.height);
@@ -148,7 +161,8 @@ function animate() {
   ctx.fillStyle = "red";
   ctx.textAlign = "center";
   ctx.fillText("Score;", canvas.width/2, canvas.height/2 - 100);
-  ctx.fillText(score, canvas.width/2, canvas.height/2 - 50); 
+  ctx.fillText(score, canvas.width/2, canvas.height/2 - 50);
+  // ctx.fillText("HP", canvas.width/2 + 5, canvas.height/2 + 150);  
   currentHp();
   drawSprite (
       samuraiSprite, 
@@ -156,7 +170,7 @@ function animate() {
       samurai.height * samurai.frameY, 
       samurai.width, 
       samurai.height,
-      samurai.x, 
+      samurai.x + samurai.punchOffset, 
       samurai.y, 
       3*samurai.height, 
       2*samurai.width
@@ -182,22 +196,26 @@ function animate() {
 
   
   punch();
+  
   for (let i = 0; i < arrows.length; i++) {
-    if (samurai.x === arrows[i].x || (samurai.x + samurai.width === arrows[i].x)) {
-      if (samurai.frameX >= 1.15) {
-        arrows = arrows.slice(i);
-        score += 1;
-      } else {
+    // console.log(arrows[i].x);
+    if (samurai.x + 70 === arrows[i].x || (samurai.x + 95 + samurai.width === arrows[i].x)) {
+  
+        arrows.shift();
         samurai.health += 1;
       }
-    
-    
+    else if (samurai.x + 10 === arrows[i].x || (samurai.x + 155 + samurai.width === arrows[i].x)) {
+      if (samurai.currentAction === 39 || samurai.currentAction === 37) {
 
-      arrows = arrows.slice(i);
+        arrows.shift();
+        score += 1;
+      }
     }
-    
   }
-  console.log(score);
+
+  
+
+  // console.log(score);
   if (samurai.health >= 5) {
     game = "done";
 
@@ -244,11 +262,19 @@ window.addEventListener("keyup", function(e) {
 
 
 // punching animation function
+const right1 = [0,1,0];
+const right2 = [1.15, 1, 50];
+const right3 = [2.17, 1, 50];
+
+const left1 = [5,1,0];
+const left2 = [3.98,1,0];
+const left3 = [3.05,1,0];
+
 
 function punch(){
   if (keys[39] && samurai.currentAction != 39) {
       samurai.currentAction = 39;
-      samurai.animationFrames = [[0,1],[0,1],[0,1],[1.15, 1],[1.15, 1],[1.15, 1],[2.17, 1],[2.17, 1],[2.17, 1]];
+      samurai.animationFrames = [right1,right1,right1,right2,right2,right2,right3,right3,right3];
       
       
       
@@ -256,16 +282,18 @@ function punch(){
   }
   else if (keys[37] && samurai.currentAction != 37) {
       samurai.currentAction = 37;
-      samurai.animationFrames = [[5,1],[5,1],[5,1],[4,1],[4,1],[4, 1],[3.05, 1],[3.05, 1],[3.05, 1]];
+      samurai.animationFrames = [left1, left1, left1, left2, left2, left2, left3,left3, left3];
   } else {
     const frame = samurai.animationFrames.pop(0);
     if (frame) {
+      samurai.punchOffset = frame[2];
       // console.log(frame);
       samurai.frameX = frame[0];
       samurai.frameY = frame[1];
     } else {
       samurai.frameX = 0;
       samurai.frameY = 0;
+      samurai.punchOffset = 0;
       samurai.currentAction = null;
       
     }
