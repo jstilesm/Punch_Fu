@@ -145,7 +145,8 @@ const health = {
 
 
 function addArrows() {
-  let shotspeed = 2000 + Math.floor(Math.random()* 3000);
+  // 1000
+  let shotspeed = 2000 + Math.floor(Math.random()* 500);
   let shotspeed2 = shotspeed + 2000; 
 
     setInterval(() => {
@@ -164,8 +165,9 @@ function addArrows() {
 // frame counter and after a certain ammount of frames
 let marker = 0;
 let healthAdd = 0;
-let musicOn = true;
-let soundEffects = true;
+let musicOn = false;
+let soundEffects = false;
+let game = "ongoing";
 
 
 function animate() {
@@ -187,7 +189,8 @@ function animate() {
     soundEffects = true;
   }
   marker += 1;
-  if (marker % 800 === 0) {
+  //500
+  if (marker % 500 === 0) {
     addArrows();
   }
   // console.log(arrows[0].speed);
@@ -198,13 +201,13 @@ function animate() {
   // }
  
   
-  let game = "ongoing";
+  
 
   ctx.clearRect(0,0, canvas.width, canvas.height);
   
   ctx.strokeText(score, 10, 50);
   ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-  ctx.font = "30px Roboto";
+  ctx.font = "Bold 30px Roboto";
   ctx.fillStyle = "red";
   ctx.textAlign = "center";
   ctx.fillText("Score;", canvas.width/2, canvas.height/2 - 100);
@@ -296,9 +299,16 @@ function animate() {
     ctx.fillStyle = "black";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(gameoverImage, 0, 0, canvas.width, canvas.height);
+    // ctx.fillStyle = "orange";
+    // ctx.font = "bold";
+    // ctx.fillText("Try Again?", canvas.width / 2, canvas.height / 2);
+
+    
   }
+  
 
 }
+
 
 window.addEventListener("keydown", function(e) {
   // debugger
@@ -376,4 +386,5 @@ function punch(){
 // }
 
 document.querySelector("#game").addEventListener("click", animate);
+
 

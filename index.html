@@ -30,28 +30,29 @@
       <input class="fight" type="image" id="game" src="src/images/fight.jpg" style="display:block;" onClick="this.style.display='none'" ></input>
       <div class="stick"></div>
     </div>
+    
+    
     <div class="summary">
-      <h3>React Quick!</p>
-      <p>Press the left and right arrow keys to destroy arrows from both sides</p>
+      <h3>Punch Left: <-</p>
+      <p>Punch Right: -></p>
       <p>Music Off: P</p>
       <p>Music On: O</p>
       <p>Sound Effects Off: I</p>
       <p>Sound Effects On: U</p>
+      <p>
+        <button class="retry" type="button" onClick="refreshPage()">Reset</button>
+      </p>
+
 
 
     </div>
     <canvas id="samurai"></canvas>
     <script src="./dist/main.js">
-
-   
-
-    // var canvas = document.getElementById("myCanvas");
-    // var ctx = canvas.getContext('2d')
-    // ctx.beginPath();
-    //   ctx.rect(20, 40, 50, 50);
-    //   ctx.fillStyle = "#FF0000";
-    //   ctx.fill();
-    //   ctx.closePath();
+    </script>
+    <script>
+      function refreshPage() {
+        window.location.reload();
+      } 
     </script>
     <audio src="./src/sound/game.mp3"> </audio>
     <audio src="./src/sound/hit.mp3"> </audio>
