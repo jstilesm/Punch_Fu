@@ -67,6 +67,11 @@ muted.src = "src/images/muted.png";
 const unmuted = new Image();
 unmuted.src = "src/images/unmuted.png";
 
+const goldArrowRight = new Image();
+goldArrowRight.src = "src/images/gold_arrow_right.png";
+const goldArrowLeft = new Image();
+goldArrowLeft.src = "src/images/gold_arrow_left.png";
+
 
 
 const soundTrack = new sound("../src/sound/game.mp3");
@@ -92,11 +97,22 @@ function drawSprite(img, sX, sY, sW, sH, dX, dY, dW, dH) {
 let arrows = [];
 
 function addArrow(direction) {
+  let rand = (Math.floor(Math.random() * Math.floor(10)) + 1);
   const arrowSprite = new Image();
   if (direction === "right") {
-    arrowSprite.src = "src/images/arrow2.png";
+    if (rand == 1) {
+      // arrowSprite.src = "src/images/gold_arrow_left.png";
+      arrowSprite.src = "src/images/arrow2.png";
+    } else {
+      arrowSprite.src = "src/images/arrow2.png";
+    }
   } else {
-    arrowSprite.src = "src/images/arrow.png";
+    if (rand == 1) {
+      // arrowSprite.src = "src/images/gold_arrow_right.png";
+      arrowSprite.src = "src/images/arrow.png";
+    } else {
+      arrowSprite.src = "src/images/arrow.png";
+    }
   }
   
 
@@ -153,7 +169,7 @@ const health = {
   // 109 220 330 440
 // Shooting arrows 
 
-
+let golden = 0;
 
 function addArrowsRight() {
   // 1000
@@ -178,7 +194,7 @@ function addArrowsLeft() {
 
     //   addArrow('left');
     //   } ,shotspeed);
-
+    
     setInterval(() => {
       addArrow('left'); 
       } ,shotspeed);
@@ -218,7 +234,7 @@ function animate() {
   
   if (marker === 100) {
     let number = (Math.floor(Math.random() * Math.floor(2)) + 1);
-    console.log(number);
+    // console.log(number);
     if (number == 2) {
       addArrowsRight();
     } else {
