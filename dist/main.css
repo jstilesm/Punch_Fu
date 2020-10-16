@@ -3,17 +3,181 @@
 
 /*# sourceMappingURL=main.css.map*/
 
+
+@import 'https://fonts.googleapis.com/css?family=Press Start 2P';
+
+
+
 .game-box {
-  background-color: magenta;
-  position: relative;
-  background-position-x: center;
-  background-position-y: center;
-  width: 300px;
-  height: 600px;
+  
+  background-size: cover;
+
+  width: 1600px;
+  height: 1000px;
   
   border: 1px solid black;
   border-radius: 10px;
   box-sizing: border-box;
   box-shadow: 0 0 8px 0 rgba(0,0,0,0.25);
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
 
 }
+
+#samurai {
+  background-color: white;
+  background-size: cover;
+  z-index: -1;
+
+  width: 1600px;
+  height: 1000px;
+  border: 1px solid black;
+  border-radius: 10px;
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+}
+/*
+.leftredbox {
+  position: absolute;
+  width: 100px; 
+  height: 200px; 
+  border: red;
+  background-color: red;
+  z-index: 2;
+  opacity: 0.2;
+  top: 66%;
+  left: 42%;
+  border-radius: 30px;
+
+}
+.rightredbox {
+  position: absolute;
+  width: 100px; 
+  height: 200px; 
+  border: red;
+  background-color: red;
+  z-index: 2;
+  opacity: 0.2;
+  top: 66%;
+  left: 50%;
+  border-radius: 30px;
+
+}
+*/
+
+
+body {
+    font-family: 'Press Start 2P';
+    font-size: 22px;
+}
+.fight {
+  /* background:url(../images/fight.png); */
+  
+
+  border-radius: 8px;
+  height: 100px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  outline: none;
+  transform: translate(-50%, -50%);
+}
+
+
+
+
+.title {
+  font-family: 'Press Start 2P';
+  position: relative;;
+  color: white;
+  font-weight: bold;
+  font-size: 50px;
+  left: 43%;
+  
+}
+
+.retry {
+  border-radius: 4px;
+  font-family: 'Press Start 2P';
+  background-color: black;  
+  border: none;
+  outline: none;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  font-size: 25px;
+  width: 500px;
+  height: 100px;
+}
+
+.retry:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.whole {
+  background-color: black;
+  overflow: hidden;
+}
+.subheader {
+  color: white;
+  position:absolute;
+  width: 600px;
+  left: 90%;
+  top: 1%;
+  a {
+    position: relative;
+  }
+}
+
+.git-image {
+  width: 20%;
+
+  
+}
+
+.linkedin-image{
+  width: 20%;
+  
+
+}
+
+.left-summary {
+  
+  
+  width: 500px;
+  font-size: 20px;
+  display: flex;
+  color: white;
+  margin-top: 250px;
+  margin-left: 125px;
+  p {
+    margin-top: 50px;
+  }
+
+}
+.right-summary {
+  display: flex;
+  color: white;
+  position: absolute;
+  left: 80%;
+  top: 20%;
+  width: 500px;
+  font-size: 20px;
+  
+  p {
+    margin-top: 50px;
+  }
+
+}
+
+
+
