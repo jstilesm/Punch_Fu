@@ -157,7 +157,7 @@ const health = {
 
 function addArrows() {
   // 1000
-  let shotspeed = 2000 + Math.floor(Math.random()* 500);
+  let shotspeed = 1000 + Math.floor(Math.random()* 1000);
   let shotspeed2 = shotspeed + 2000; 
 
     setInterval(() => {
@@ -232,18 +232,20 @@ function animate() {
   if (soundEffects) {
     ctx.font = "Bold 30px Roboto";
     ctx.fillStyle = "white";
-    ctx.fillText("Sound FX", 1475, 40);
+    ctx.fillText("Sound FX", 1475, 50);
     ctx.drawImage(unmuted, 1400, 50, canvas.width/10, canvas.height /8);
   } else {
     ctx.font = "Bold 30px Roboto";
     ctx.fillStyle = "white";
-    ctx.fillText("Sound FX", 1475, 40);
+    ctx.fillText("Sound FX", 1475, 50);
     ctx.drawImage(muted, 1400, 50, canvas.width/10, canvas.height /8);
   }
   ctx.font = "Bold 100px Roboto";
-  ctx.fillStyle = "red";
+  ctx.strokeStyle = 'black';
+  ctx.fillStyle = "white";
   ctx.textAlign = "center";
   // ctx.fillText("Score", canvas.width/2, canvas.height/2 - 500);
+  ctx.strokeText(score, canvas.width/2, canvas.height/2 - 50);
   ctx.fillText(score, canvas.width/2, canvas.height/2 - 50);
 
   // Add event listener to canvas element 
@@ -327,9 +329,12 @@ function animate() {
   if (game === "ongoing") {
     requestAnimationFrame(animate);
   } else {
-    soundTrack.stop();
+    // soundTrack.stop();
     // debugger
+    
     loseSound.play();
+  
+    
     ctx.clearRect(0,0, canvas.width, canvas.height);
     ctx.fillStyle = "black";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
