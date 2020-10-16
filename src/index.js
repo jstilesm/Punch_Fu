@@ -64,8 +64,12 @@ gameoverImage.src = "src/images/gameover.png";
 
 const soundTrack = new sound("../src/sound/game.mp3");
 const hitSound = new sound("../src/sound/hit.mp3");
-const missSound = new sound("../src/sound/miss.mp3");
+const arrowSound = new sound("../src/sound/miss.mp3");
 const hurtSound = new sound("../src/sound/hurt.mp3");
+const loseSound = new sound("../src/sound/lose.mp3");
+const missSound = new sound("../src/sound/air.mp3");
+
+
 
 
 
@@ -165,8 +169,8 @@ function addArrows() {
 // frame counter and after a certain ammount of frames
 let marker = 0;
 let healthAdd = 0;
-let musicOn = false;
-let soundEffects = false;
+let musicOn = true;
+let soundEffects = true;
 let game = "ongoing";
 
 
@@ -264,6 +268,7 @@ function animate() {
         }
       }
     else if (samurai.x + 10 === arrows[i].x || (samurai.x + 155 + samurai.width === arrows[i].x)) {
+      
       if (samurai.currentAction === 39 || samurai.currentAction === 37) {
 
         arrows.shift();
@@ -272,13 +277,13 @@ function animate() {
         }
         score += 1;
         healthAdd += 1;
-        if (healthAdd % 10 === 0 && samurai.heath != 5) {
+        if (healthAdd % 10 === 0 && samurai.heath < 5) {
           samurai.health -= 1;
         } 
       }
     } else {
       if (soundEffects) {
-        missSound.play();
+        arrowSound.play();
       }
     }
   }
@@ -295,6 +300,7 @@ function animate() {
   } else {
     soundTrack.stop();
     // debugger
+    loseSound.play();
     ctx.clearRect(0,0, canvas.width, canvas.height);
     ctx.fillStyle = "black";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -350,15 +356,25 @@ const left3 = [3.05,1,0];
 
 
 function punch(){
+  
   if (keys[39] && samurai.currentAction != 39) {
       samurai.currentAction = 39;
       samurai.animationFrames = [right1,right1,right1,right2,right2,right2,right3,right3,right3];
+      if (soundEffects) {
+        missSound.play();
+
+      }
+    
       
       
       
       
   }
   else if (keys[37] && samurai.currentAction != 37) {
+      if (soundEffects) {
+        missSound.play();
+
+      }
     
       samurai.currentAction = 37;
       samurai.animationFrames = [left1, left1, left1, left2, left2, left2, left3,left3, left3];

@@ -12,19 +12,24 @@
     <div class="subheader">
       <p>Nick McDonnell</p>
       
-
+      <link rel=“stylesheet” href=“https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css”>
       <a href="https://github.com/NStilesM">
       <img class="git-image" src="https://avatars0.githubusercontent.com/u/9919?s=280&v=4"></a>
       
       <a href="https://www.linkedin.com/in/nicholas-mcdonnell-328569108/">
         <img class="linkedin-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Linkedin.svg/1200px-Linkedin.svg.png">
       </a>
+      <i class=“fa fa-github”></i>
+      <i class="fas fa-volume-mute"></i>
     </div>
     
   </head>
+  
 
   <body class="whole">
     <div class="game-box">
+      
+
       <div class="leftredbox"></div>
       <div class="rightredbox"></div>
       <input class="fight" type="image" id="game" src="src/images/fight.jpg" style="display:block;" onClick="this.style.display='none'" ></input>
@@ -32,17 +37,26 @@
     </div>
     
     
-    <div class="summary">
+    <div class="left-summary">
       <h3>Punch Left: <-</p>
       <p>Punch Right: -></p>
       <p>Music Off: P</p>
       <p>Music On: O</p>
       <p>Sound Effects Off: I</p>
       <p>Sound Effects On: U</p>
+      
       <p>
         <button class="retry" type="button" onClick="refreshPage()">Reset</button>
       </p>
 
+    
+
+    </div>
+    <div class="right-summary">
+      
+      <h3>Rules:</p>
+      <p>Hit 10 in a row to gain a heart</p>
+      <p>Last as long as you can</p>
 
 
     </div>
@@ -58,6 +72,9 @@
     <audio src="./src/sound/hit.mp3"> </audio>
     <audio src="./src/sound/miss.mp3"> </audio>
     <audio src="./src/sound/hurt.mp3"> </audio>
+    <audio src="./src/sound/lose.mp3"> </audio>
+    <audio src="./src/sound/air.mp3"> </audio>
+
     
   </body>
 </html>

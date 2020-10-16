@@ -91,7 +91,7 @@ body {
 
 .title {
   font-family: 'Press Start 2P';
-  position:absolute;
+  position: relative;;
   color: white;
   font-weight: bold;
   font-size: 50px;
@@ -114,17 +114,19 @@ body {
 }
 
 .retry:hover {
-  background-color: #4CAF50; /* Green */
+  background-color: #4CAF50;
   color: white;
 }
 
 .whole {
   background-color: black;
+  overflow: hidden;
 }
 .subheader {
   color: white;
   position:absolute;
   left: 90%;
+  top: 1%;
   a {
     position: relative;
   }
@@ -142,18 +144,35 @@ body {
 
 }
 
-.summary {
-  position: absolute;
-  left: 100px;
-  top: -125px;
+.left-summary {
+  
+  
   width: 500px;
   font-size: 20px;
   display: flex;
   color: white;
-  margin-top: 500px;
+  margin-top: 200px;
+  margin-left: 125px;
   p {
     margin-top: 100px;
   }
 
 }
+.right-summary {
+  display: flex;
+  color: white;
+  position: absolute;
+  left: 80%;
+  top: 15%;
+  width: 500px;
+  font-size: 20px;
+  
+  
+  p {
+    margin-top: 100px;
+  }
+
+}
+
+
 
