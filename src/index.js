@@ -155,19 +155,33 @@ const health = {
 
 
 
-function addArrows() {
+function addArrowsRight() {
   // 1000
-  let shotspeed = 1000 + Math.floor(Math.random()* 1000);
-  let shotspeed2 = shotspeed + 2000; 
+  let shotspeed = 3000 + Math.floor(Math.random()* 5000);
+  // let shotspeed2 = shotspeed + 2000; 
 
-    setInterval(() => {
+    // setInterval(() => {
 
-      addArrow('left');
-      } ,shotspeed);
+    //   addArrow('left');
+    //   } ,shotspeed);
 
     setInterval(() => {
       addArrow('right'); 
-      } ,shotspeed2);
+      } ,shotspeed);
+}
+function addArrowsLeft() {
+  // 1000
+  let shotspeed = 3000 + Math.floor(Math.random()* 5000);
+  // let shotspeed2 = shotspeed + 2000; 
+
+    // setInterval(() => {
+
+    //   addArrow('left');
+    //   } ,shotspeed);
+
+    setInterval(() => {
+      addArrow('left'); 
+      } ,shotspeed);
 }
 // addArrows();
 
@@ -179,6 +193,7 @@ let healthAdd = 0;
 let musicOn = true;
 let soundEffects = true;
 let game = "ongoing";
+let left = false;
 
 
 function animate() {
@@ -200,17 +215,25 @@ function animate() {
     soundEffects = true;
   }
   marker += 1;
-  //500
-  if (marker % 500 === 0) {
-    addArrows();
+  
+  if (marker === 100) {
+    let number = (Math.floor(Math.random() * Math.floor(2)) + 1);
+    console.log(number);
+    if (number == 2) {
+      addArrowsRight();
+    } else {
+      addArrowsLeft();
+    }
   }
-  // console.log(arrows[0].speed);
-  // if (score >= marker) {
-    
-  //   arrow.speed += 5;
-  //   marker += 5;
-  // }
- 
+  if (marker % 500 === 0) {
+    let number = (Math.floor(Math.random() * Math.floor(2)) + 1);
+    console.log(number);
+    if (number == 2) {
+      addArrowsRight();
+    } else {
+      addArrowsLeft();
+    }
+  }
   
   
 
