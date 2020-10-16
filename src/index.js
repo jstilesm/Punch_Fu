@@ -1,17 +1,11 @@
 import "./styles/index.scss";
 
-
 // Base set up
 const canvas = document.getElementById('samurai');
 const ctx = canvas.getContext('2d');
 
 canvas.width = 1600;
 canvas.height = 1000;
-
-
-
-
-const keys = [];
 
 const samurai = {
     x: 650,
@@ -27,6 +21,12 @@ const samurai = {
     animationFrames: [],
     punchOffset: 0
 };
+
+
+
+const keys = [];
+
+
 
 // Setting up images
 
