@@ -329,7 +329,7 @@ function animate() {
   if (game === "ongoing") {
     requestAnimationFrame(animate);
   } else {
-    // soundTrack.stop();
+    soundTrack.stop();
     // debugger
     
     loseSound.play();
