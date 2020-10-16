@@ -1,17 +1,11 @@
 import "./styles/index.scss";
 
-
 // Base set up
 const canvas = document.getElementById('samurai');
 const ctx = canvas.getContext('2d');
 
 canvas.width = 1600;
 canvas.height = 1000;
-
-
-
-
-const keys = [];
 
 const samurai = {
     x: 650,
@@ -27,6 +21,12 @@ const samurai = {
     animationFrames: [],
     punchOffset: 0
 };
+
+
+
+const keys = [];
+
+
 
 // Setting up images
 
@@ -60,6 +60,13 @@ healthSprite.src = "src/images/health.png";
 
 const gameoverImage = new Image();
 gameoverImage.src = "src/images/gameover.png";
+
+const muted = new Image();
+muted.src = "src/images/muted.png";
+
+const unmuted = new Image();
+unmuted.src = "src/images/unmuted.png";
+
 
 
 const soundTrack = new sound("../src/sound/game.mp3");
@@ -150,7 +157,7 @@ const health = {
 
 function addArrows() {
   // 1000
-  let shotspeed = 2000 + Math.floor(Math.random()* 500);
+  let shotspeed = 1000 + Math.floor(Math.random()* 1000);
   let shotspeed2 = shotspeed + 2000; 
 
     setInterval(() => {
@@ -177,7 +184,7 @@ let game = "ongoing";
 function animate() {
   if (musicOn) {
     soundTrack.play();
-
+    ctx.drawImage(unmuted, 0, 0, canvas.width, canvas.height);
   }
   if (keys[80]) {
     soundTrack.stop();
@@ -211,10 +218,34 @@ function animate() {
   
   ctx.strokeText(score, 10, 50);
   ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-  ctx.font = "Bold 30px Roboto";
-  ctx.fillStyle = "red";
+  if (musicOn) {
+    ctx.font = "Bold 30px Roboto";
+    ctx.fillStyle = "white";
+    ctx.fillText("Music", canvas.width/8 - 120, canvas.height/8 - 80);
+    ctx.drawImage(unmuted, 0, 50, canvas.width/10, canvas.height /8);
+  } else {
+    ctx.font = "Bold 30px Roboto";
+    ctx.fillStyle = "white";
+    ctx.fillText("Music", canvas.width/8 - 120, canvas.height/8 - 80);
+    ctx.drawImage(muted, 0, 50, canvas.width/10, canvas.height /8);
+  }
+  if (soundEffects) {
+    ctx.font = "Bold 30px Roboto";
+    ctx.fillStyle = "white";
+    ctx.fillText("Sound FX", 1475, 50);
+    ctx.drawImage(unmuted, 1400, 50, canvas.width/10, canvas.height /8);
+  } else {
+    ctx.font = "Bold 30px Roboto";
+    ctx.fillStyle = "white";
+    ctx.fillText("Sound FX", 1475, 50);
+    ctx.drawImage(muted, 1400, 50, canvas.width/10, canvas.height /8);
+  }
+  ctx.font = "Bold 100px Roboto";
+  ctx.strokeStyle = 'black';
+  ctx.fillStyle = "white";
   ctx.textAlign = "center";
-  ctx.fillText("Score;", canvas.width/2, canvas.height/2 - 100);
+  // ctx.fillText("Score", canvas.width/2, canvas.height/2 - 500);
+  ctx.strokeText(score, canvas.width/2, canvas.height/2 - 50);
   ctx.fillText(score, canvas.width/2, canvas.height/2 - 50);
 
   // Add event listener to canvas element 
@@ -298,9 +329,12 @@ function animate() {
   if (game === "ongoing") {
     requestAnimationFrame(animate);
   } else {
-    soundTrack.stop();
+    // soundTrack.stop();
     // debugger
+    
     loseSound.play();
+  
+    
     ctx.clearRect(0,0, canvas.width, canvas.height);
     ctx.fillStyle = "black";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
