@@ -243,7 +243,7 @@ function animate() {
   }
   if (marker % 500 === 0) {
     let number = (Math.floor(Math.random() * Math.floor(2)) + 1);
-    console.log(number);
+    //console.log(number);
     if (number == 2) {
       addArrowsRight();
     } else {
@@ -392,7 +392,7 @@ function animate() {
 window.addEventListener("keydown", function(e) {
   // debugger
   keys[e.keyCode] = true;
-  console.log(keys);
+  //console.log(keys);
 });
 
 window.addEventListener("keyup", function(e) {
