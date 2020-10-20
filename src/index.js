@@ -114,7 +114,6 @@ function addArrow(direction) {
       arrowSprite.src = "src/images/arrow.png";
     }
   }
-  
 
   const arrow = {
     sprite: arrowSprite,
@@ -123,6 +122,7 @@ function addArrow(direction) {
     width: 286,
     height: 58,
     speed: 10,
+    status: "regular"
   };
   if (direction === "left") {
   
@@ -135,6 +135,47 @@ function addArrow(direction) {
   }
   arrows.push(arrow);
 }
+function specialArrow(direction) {
+  let rand = (Math.floor(Math.random() * Math.floor(10)) + 1);
+  const arrowSprite = new Image();
+  if (direction === "right") {
+    if (rand == 1) {
+      // arrowSprite.src = "src/images/gold_arrow_left.png";
+      arrowSprite.src = "src/images/gold_arrow_left.png";
+    } else {
+      arrowSprite.src = "src/images/gold_arrow_left.png";
+    }
+  } else {
+    if (rand == 1) {
+      // arrowSprite.src = "src/images/gold_arrow_right.png";
+      arrowSprite.src = "src/images/gold_arrow_right.png";
+    } else {
+      arrowSprite.src = "src/images/gold_arrow_right.png";
+    }
+  }
+
+  const arrow = {
+    sprite: arrowSprite,
+    x: 0,
+    y: canvas.height - 250,
+    width: 286,
+    height: 58,
+    speed: 10,
+    status: "gold"
+  };
+  if (direction === "left") {
+  
+    arrow.x = 0;
+ 
+  } else {
+    arrow.x = canvas.width - 50;
+    
+    arrow.speed = arrow.speed *  -1;
+  }
+  arrows.push(arrow);
+}
+
+
 
 
 
@@ -176,11 +217,6 @@ function addArrowsRight() {
   let shotspeed = 3000 + Math.floor(Math.random()* 5000);
   // let shotspeed2 = shotspeed + 2000; 
 
-    // setInterval(() => {
-
-    //   addArrow('left');
-    //   } ,shotspeed);
-
     setInterval(() => {
       addArrow('right'); 
       } ,shotspeed);
@@ -188,18 +224,28 @@ function addArrowsRight() {
 function addArrowsLeft() {
   // 1000
   let shotspeed = 3000 + Math.floor(Math.random()* 5000);
-  // let shotspeed2 = shotspeed + 2000; 
-
-    // setInterval(() => {
-
-    //   addArrow('left');
-    //   } ,shotspeed);
     
     setInterval(() => {
       addArrow('left'); 
       } ,shotspeed);
 }
-// addArrows();
+
+// add special arrow to the game
+function addspecialArrow() {
+  let specialspeed = 20000 + Math.floor(Math.random()* 5000);
+  let random = Math.floor(Math.random() * 1);
+  if (random === 1) {
+    setInterval(() => {
+    specialArrow("left");
+     }, specialspeed);
+  } else {
+    setInterval(() => {
+    specialArrow("right");
+     }, specialspeed);
+  }
+  
+}
+
 
 // Main animate function that runs the game
 
@@ -232,7 +278,7 @@ function animate() {
   }
   marker += 1;
   
-  if (marker === 100) {
+  if (marker === 20) {
     let number = (Math.floor(Math.random() * Math.floor(2)) + 1);
     // console.log(number);
     if (number == 2) {
@@ -251,7 +297,9 @@ function animate() {
     }
   }
   
-  
+  if (marker === 1) {
+    addspecialArrow();
+  }
 
   ctx.clearRect(0,0, canvas.width, canvas.height);
   
@@ -341,16 +389,23 @@ function animate() {
       
       if (samurai.currentAction === 39 || samurai.currentAction === 37) {
 
-        arrows.shift();
+        let arrow = arrows.shift();
+        if (arrow.status === "gold") {
+
+        }
         if (soundEffects) {
           hitSound.play();
         }
         score += 1;
         healthAdd += 1;
-        if (healthAdd % 10 === 0 && samurai.heath < 5) {
+        // console.log(healthAdd)
+        // console.log(samurai.health)
+        // console.log(samurai.health)
+        if (healthAdd % 5 === 0 && samurai.health > 0) {
           samurai.health -= 1;
         } 
       }
+      
     } else {
       if (soundEffects) {
         arrowSound.play();
@@ -375,9 +430,19 @@ function animate() {
   
     
     ctx.clearRect(0,0, canvas.width, canvas.height);
-    ctx.fillStyle = "black";
+    ctx.fillStyle = "white";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(gameoverImage, 0, 0, canvas.width, canvas.height);
+    
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    
+    ctx.textAlign = "center";
+    ctx.font = "Bold 100px Press Start 2P";
+  // ctx.fillText("Score", canvas.width/2, canvas.height/2 - 500);
+    ctx.strokeText("Press Reset to Try Again", canvas.width/2, canvas.height - 50);
+    ctx.fillText("Press Reset to Try Again", canvas.width/2, canvas.height - 50);
+    
     // ctx.fillStyle = "orange";
     // ctx.font = "bold";
     // ctx.fillText("Try Again?", canvas.width / 2, canvas.height / 2);
