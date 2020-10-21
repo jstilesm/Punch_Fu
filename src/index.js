@@ -45,6 +45,8 @@ function sound(src) {
   };
 }
 
+const samuraiSwordSprite = new Image();
+samuraiSwordSprite.src = "src/images/Samurai_sword.png";
 
 const samuraiSprite = new Image();
 samuraiSprite.src = "src/images/Samurai.png";
@@ -252,10 +254,11 @@ function addspecialArrow() {
 // frame counter and after a certain ammount of frames
 let marker = 0;
 let healthAdd = 0;
-let musicOn = true;
-let soundEffects = true;
+let musicOn = false;
+let soundEffects = false;
 let game = "ongoing";
 let left = false;
+let upgrade = false;
 
 
 function animate() {
@@ -341,7 +344,20 @@ function animate() {
 
   // ctx.fillText("HP", canvas.width/2 + 5, canvas.height/2 + 150);  
   currentHp();
-  drawSprite (
+  if (upgrade === true) {
+      drawSprite(
+      samuraiSwordSprite, 
+      samurai.width * samurai.frameX + 5, 
+      samurai.height * samurai.frameY + 15, 
+      samurai.width, 
+      samurai.height,
+      samurai.x + samurai.punchOffset, 
+      samurai.y, 
+      3*samurai.height, 
+      2*samurai.width
+      );
+  } else {
+    drawSprite (
       samuraiSprite, 
       samurai.width * samurai.frameX, 
       samurai.height * samurai.frameY, 
@@ -352,6 +368,8 @@ function animate() {
       3*samurai.height, 
       2*samurai.width
     );
+  }
+  
     for (let i = 0; i < arrows.length; i++) {
       const arrow = arrows[i];
       arrow.x += arrow.speed;
@@ -371,8 +389,12 @@ function animate() {
     
   
 
+  if (upgrade === true) {
+    saber();
+  } else {
+    punch();
+  }
   
-  punch();
   
   for (let i = 0; i < arrows.length; i++) {
     // console.log(arrows[i].x);
@@ -391,7 +413,7 @@ function animate() {
 
         let arrow = arrows.shift();
         if (arrow.status === "gold") {
-
+          upgrade = true;
         }
         if (soundEffects) {
           hitSound.play();
@@ -438,7 +460,7 @@ function animate() {
     ctx.fillStyle = "black";
     
     ctx.textAlign = "center";
-    ctx.font = "Bold 100px Press Start 2P";
+    ctx.font = "Press Start 2P";
   // ctx.fillText("Score", canvas.width/2, canvas.height/2 - 500);
     ctx.strokeText("Press Reset to Try Again", canvas.width/2, canvas.height - 50);
     ctx.fillText("Press Reset to Try Again", canvas.width/2, canvas.height - 50);
@@ -484,13 +506,16 @@ window.addEventListener("keyup", function(e) {
 
 
 // punching animation function
-const right1 = [0,1,0];
-const right2 = [1.15, 1, 50];
-const right3 = [2.17, 1, 50];
+let right1 = [0,1,0];
+let right2 = [1.15, 1, 50];
+let right3 = [2.17, 1, 50];
 
-const left1 = [5,1,0];
-const left2 = [3.98,1,0];
-const left3 = [3.05,1,0];
+let left1 = [5,1,0];
+let left2 = [3.98,1,0];
+let left3 = [3.05,1,0];
+
+
+
 
 
 function punch(){
@@ -504,8 +529,52 @@ function punch(){
       }
     
       
+  }
+  else if (keys[37] && samurai.currentAction != 37) {
+      if (soundEffects) {
+        missSound.play();
+
+      }
+    
+      samurai.currentAction = 37;
+      samurai.animationFrames = [left1, left1, left1, left2, left2, left2, left3,left3, left3];
+  } else {
+    const frame = samurai.animationFrames.pop(0);
+    if (frame) {
+      samurai.punchOffset = frame[2];
+      // console.log(frame);
+      samurai.frameX = frame[0];
+      samurai.frameY = frame[1];
+    } else {
+      samurai.frameX = 0;
+      samurai.frameY = 0;
+      samurai.punchOffset = 0;
+      samurai.currentAction = null;
       
-      
+    }
+  }
+  
+}
+
+//  right1 = [0,1.4,0];
+//  right2 = [2, 1.4, 50];
+//  right3 = [2.17, 1.4, 50];
+
+//  left1 = [5,1,0];
+//  left2 = [3.98,1,0];
+//  left3 = [3.05,1,0];
+
+
+function saber(){
+  
+  if (keys[39] && samurai.currentAction != 39) {
+      samurai.currentAction = 39;
+      samurai.animationFrames = [right1,right1,right1,right2,right2,right2,right3,right3,right3];
+      if (soundEffects) {
+        missSound.play();
+
+      }
+    
       
   }
   else if (keys[37] && samurai.currentAction != 37) {
