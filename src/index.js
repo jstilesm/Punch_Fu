@@ -259,7 +259,7 @@ let soundEffects = false;
 let game = "ongoing";
 let left = false;
 let upgrade = false;
-
+let upgradeTimer = 500;
 
 function animate() {
   if (musicOn) {
@@ -280,6 +280,13 @@ function animate() {
     soundEffects = true;
   }
   marker += 1;
+  if (upgrade === true) {
+    upgradeTimer -= 1;
+    if (upgradeTimer === 0) {
+      upgrade = false;
+      upgradeTimer = 500;
+    }
+  }
   
   if (marker === 20) {
     let number = (Math.floor(Math.random() * Math.floor(2)) + 1);
@@ -305,6 +312,7 @@ function animate() {
   }
 
   ctx.clearRect(0,0, canvas.width, canvas.height);
+  
   
   ctx.strokeText(score, 10, 50);
   ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
@@ -335,6 +343,17 @@ function animate() {
   ctx.fillStyle = "white";
   ctx.textAlign = "center";
   // ctx.fillText("Score", canvas.width/2, canvas.height/2 - 500);
+  if (upgradeTimer != 500) {
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "orange";
+    ctx.strokeText("UPGRADE", canvas.width/2, canvas.height/2 - 300);
+    ctx.fillText("UPGRADE", canvas.width/2, canvas.height/2 - 300);
+
+    ctx.strokeText(Math.floor(upgradeTimer / 100), canvas.width/2, canvas.height/2 - 200);
+    ctx.fillText(Math.floor(upgradeTimer / 100), canvas.width/2, canvas.height/2 - 200);
+  }
+  
+  ctx.fillStyle = "white";
   ctx.strokeText(score, canvas.width/2, canvas.height/2 - 50);
   ctx.fillText(score, canvas.width/2, canvas.height/2 - 50);
 
@@ -347,8 +366,8 @@ function animate() {
   if (upgrade === true) {
       drawSprite(
       samuraiSwordSprite, 
-      samurai.width * samurai.frameX + 5, 
-      samurai.height * samurai.frameY + 15, 
+      samurai.width * samurai.frameX - 5, 
+      samurai.height * samurai.frameY + 25, 
       samurai.width, 
       samurai.height,
       samurai.x + samurai.punchOffset, 
@@ -555,21 +574,27 @@ function punch(){
   }
   
 }
+if (upgrade === true) {
+  samurai.width = 85;
+} else {
+  samurai.width = 75;
+}
+// 
+ let saberright1 = [0, 1.4,0];
+ let saberright2 = [2, 1.4, 50];
+ let saberright3 = [2.17, 1.4, 50];
 
-//  right1 = [0,1.4,0];
-//  right2 = [2, 1.4, 50];
-//  right3 = [2.17, 1.4, 50];
 
-//  left1 = [5,1,0];
-//  left2 = [3.98,1,0];
-//  left3 = [3.05,1,0];
+ let saberleft1 = [5,1.4,0];
+ let saberleft2 = [3.98,1.4,0];
+ let saberleft3 = [3.05,1.4,0];
 
 
 function saber(){
   
   if (keys[39] && samurai.currentAction != 39) {
       samurai.currentAction = 39;
-      samurai.animationFrames = [right1,right1,right1,right2,right2,right2,right3,right3,right3];
+      samurai.animationFrames = [saberright1,saberright1,saberright1,saberright2,saberright2,saberright2,saberright3,saberright3,saberright3];
       if (soundEffects) {
         missSound.play();
 
@@ -584,7 +609,7 @@ function saber(){
       }
     
       samurai.currentAction = 37;
-      samurai.animationFrames = [left1, left1, left1, left2, left2, left2, left3,left3, left3];
+      samurai.animationFrames = [saberleft1, saberleft1, saberleft1, saberleft2, saberleft2, saberleft2, saberleft3,saberleft3, saberleft3];
   } else {
     const frame = samurai.animationFrames.pop(0);
     if (frame) {
