@@ -288,7 +288,9 @@ function animate() {
     upgradeTimer -= 1;
     if (upgradeTimer === 0) {
       upgrade = false;
-      unupgradeSound.play();
+      if (soundEffects) {
+        unupgradeSound.play();
+      }
       upgradeTimer = 500;
     }
   }
@@ -322,28 +324,28 @@ function animate() {
   ctx.strokeText(score, 10, 50);
   ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
   if (musicOn) {
-    ctx.font = "Bold 30px Roboto";
+    ctx.font = "Bold 30px Verdana";
     ctx.fillStyle = "white";
     ctx.fillText("Music", canvas.width/8 - 120, canvas.height/8 - 80);
     ctx.drawImage(unmuted, 0, 50, canvas.width/10, canvas.height /8);
   } else {
-    ctx.font = "Bold 30px Roboto";
+    ctx.font = "Bold 30px Verdana";
     ctx.fillStyle = "white";
     ctx.fillText("Music", canvas.width/8 - 120, canvas.height/8 - 80);
     ctx.drawImage(muted, 0, 50, canvas.width/10, canvas.height /8);
   }
   if (soundEffects) {
-    ctx.font = "Bold 30px Roboto";
+    ctx.font = "Bold 30px Verdana";
     ctx.fillStyle = "white";
     ctx.fillText("Sound FX", 1475, 50);
     ctx.drawImage(unmuted, 1400, 50, canvas.width/10, canvas.height /8);
   } else {
-    ctx.font = "Bold 30px Roboto";
+    ctx.font = "Bold 30px Verdana";
     ctx.fillStyle = "white";
     ctx.fillText("Sound FX", 1475, 50);
     ctx.drawImage(muted, 1400, 50, canvas.width/10, canvas.height /8);
   }
-  ctx.font = "Bold 100px Roboto";
+  ctx.font = "Bold 100px Verdana";
   ctx.strokeStyle = 'black';
   ctx.fillStyle = "white";
   ctx.textAlign = "center";
@@ -351,16 +353,20 @@ function animate() {
   if (upgradeTimer != 500) {
     ctx.strokeStyle = 'black';
     ctx.fillStyle = "orange";
-    ctx.strokeText("UPGRADE", canvas.width/2, canvas.height/2 - 300);
-    ctx.fillText("UPGRADE", canvas.width/2, canvas.height/2 - 300);
+    ctx.strokeText("UPGRADE", canvas.width/2, canvas.height/2);
+    ctx.fillText("UPGRADE", canvas.width/2, canvas.height/2);
 
-    ctx.strokeText(Math.floor(upgradeTimer / 100), canvas.width/2, canvas.height/2 - 200);
-    ctx.fillText(Math.floor(upgradeTimer / 100), canvas.width/2, canvas.height/2 - 200);
+    ctx.strokeText(Math.floor(upgradeTimer / 100), canvas.width/2, canvas.height/2 + 100);
+    ctx.fillText(Math.floor(upgradeTimer / 100), canvas.width/2, canvas.height/2 + 100);
   }
   
   ctx.fillStyle = "white";
-  ctx.strokeText(score, canvas.width/2, canvas.height/2 - 50);
-  ctx.fillText(score, canvas.width/2, canvas.height/2 - 50);
+
+
+  ctx.strokeText("Score", canvas.width/2, 120);
+  ctx.fillText("Score", canvas.width/2, 120);
+  ctx.strokeText(score, canvas.width/2, 210);
+  ctx.fillText(score, canvas.width/2, 210);
 
   // Add event listener to canvas element 
  
@@ -431,6 +437,9 @@ function animate() {
           hurtSound.play();
         }
       }
+    else if (upgrade === true && (samurai.x - 50 === arrows[i].x || (samurai.x + 215 + samurai.width === arrows[i].x))) {
+
+    }
     else if (samurai.x + 10 === arrows[i].x || (samurai.x + 155 + samurai.width === arrows[i].x)) {
       
       if (samurai.currentAction === 39 || samurai.currentAction === 37) {
@@ -438,7 +447,9 @@ function animate() {
         let arrow = arrows.shift();
         if (arrow.status === "gold") {
           upgrade = true;
-          upgradeSound.play();
+          if (soundEffects) {
+            upgradeSound.play();
+          }
         }
         if (soundEffects) {
           if (upgrade === true) {
@@ -477,8 +488,10 @@ function animate() {
   } else {
     soundTrack.stop();
     // debugger
-    
-    loseSound.play();
+    if (soundEffects) {
+
+      loseSound.play();
+    }
   
     
     ctx.clearRect(0,0, canvas.width, canvas.height);
