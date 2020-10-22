@@ -82,6 +82,10 @@ const arrowSound = new sound("../src/sound/miss.mp3");
 const hurtSound = new sound("../src/sound/hurt.mp3");
 const loseSound = new sound("../src/sound/lose.mp3");
 const missSound = new sound("../src/sound/air.mp3");
+const upgradeSound = new sound("../src/sound/upgrade.mp3");
+const swordmissSound = new sound("../src/sound/sword_miss.mp3");
+const swordhitSound = new sound("../src/sound/sword_hit.mp3");
+const unupgradeSound = new sound("../src/sound/unupgrade.mp3");
 
 
 
@@ -220,7 +224,7 @@ function addArrowsRight() {
   // let shotspeed2 = shotspeed + 2000; 
 
     setInterval(() => {
-      addArrow('right'); 
+      specialArrow('right'); 
       } ,shotspeed);
 }
 function addArrowsLeft() {
@@ -228,7 +232,7 @@ function addArrowsLeft() {
   let shotspeed = 3000 + Math.floor(Math.random()* 5000);
     
     setInterval(() => {
-      addArrow('left'); 
+      specialArrow('left'); 
       } ,shotspeed);
 }
 
@@ -284,6 +288,7 @@ function animate() {
     upgradeTimer -= 1;
     if (upgradeTimer === 0) {
       upgrade = false;
+      unupgradeSound.play();
       upgradeTimer = 500;
     }
   }
@@ -366,12 +371,12 @@ function animate() {
   if (upgrade === true) {
       drawSprite(
       samuraiSwordSprite, 
-      samurai.width * samurai.frameX - 5, 
-      samurai.height * samurai.frameY + 25, 
+      samurai.width * samurai.frameX + 35, 
+      samurai.height * samurai.frameY + 10, 
       samurai.width, 
       samurai.height,
       samurai.x + samurai.punchOffset, 
-      samurai.y, 
+      samurai.y + samurai.punchOffset / 10, 
       3*samurai.height, 
       2*samurai.width
       );
@@ -433,9 +438,15 @@ function animate() {
         let arrow = arrows.shift();
         if (arrow.status === "gold") {
           upgrade = true;
+          upgradeSound.play();
         }
         if (soundEffects) {
-          hitSound.play();
+          if (upgrade === true) {
+            swordhitSound.play();
+          } else {
+            hitSound.play();
+          }
+          
         }
         score += 1;
         healthAdd += 1;
@@ -543,7 +554,12 @@ function punch(){
       samurai.currentAction = 39;
       samurai.animationFrames = [right1,right1,right1,right2,right2,right2,right3,right3,right3];
       if (soundEffects) {
-        missSound.play();
+        if (upgrade === true) {
+          swordmissSound.play();
+        } else {
+          missSound.play();
+        }
+        
 
       }
     
@@ -551,7 +567,11 @@ function punch(){
   }
   else if (keys[37] && samurai.currentAction != 37) {
       if (soundEffects) {
-        missSound.play();
+        if (upgrade === true) {
+          swordmissSound.play();
+        } else {
+          missSound.play();
+        }
 
       }
     
@@ -575,19 +595,19 @@ function punch(){
   
 }
 if (upgrade === true) {
-  samurai.width = 85;
+  samurai.width = 300;
 } else {
   samurai.width = 75;
 }
 // 
- let saberright1 = [0, 1.4,0];
- let saberright2 = [2, 1.4, 50];
- let saberright3 = [2.17, 1.4, 50];
+ let saberright1 = [0.2, 1.5,0];
+ let saberright2 = [0.2, 2.5, 100];
+ let saberright3 = [0.2, 3.5, 100];
 
 
- let saberleft1 = [5,1.4,0];
- let saberleft2 = [3.98,1.4,0];
- let saberleft3 = [3.05,1.4,0];
+ let saberleft1 = [0.05,6.5,50];
+ let saberleft2 = [.05,5.5,50];
+ let saberleft3 = [.05,4.5,50];
 
 
 function saber(){
