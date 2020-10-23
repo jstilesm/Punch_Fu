@@ -345,7 +345,7 @@ function animate() {
     ctx.fillText("Sound FX", 1475, 50);
     ctx.drawImage(muted, 1400, 50, canvas.width/10, canvas.height /8);
   }
-  ctx.font = "Bold 100px Verdana";
+  ctx.font = "Bold 50px Verdana";
   ctx.strokeStyle = 'black';
   ctx.fillStyle = "white";
   ctx.textAlign = "center";
@@ -353,11 +353,11 @@ function animate() {
   if (upgradeTimer != 500) {
     ctx.strokeStyle = 'black';
     ctx.fillStyle = "orange";
-    ctx.strokeText("UPGRADE", canvas.width/2, canvas.height/2);
-    ctx.fillText("UPGRADE", canvas.width/2, canvas.height/2);
+    ctx.strokeText("POWER UP", canvas.width/2, canvas.height/2);
+    ctx.fillText("POWER UP", canvas.width/2, canvas.height/2);
 
-    ctx.strokeText(Math.floor(upgradeTimer / 100), canvas.width/2, canvas.height/2 + 100);
-    ctx.fillText(Math.floor(upgradeTimer / 100), canvas.width/2, canvas.height/2 + 100);
+    ctx.strokeText(Math.floor(upgradeTimer / 100), canvas.width/2, canvas.height/2 + 50);
+    ctx.fillText(Math.floor(upgradeTimer / 100), canvas.width/2, canvas.height/2 + 50);
   }
   
   ctx.fillStyle = "white";
@@ -365,8 +365,8 @@ function animate() {
 
   ctx.strokeText("Score", canvas.width/2, 120);
   ctx.fillText("Score", canvas.width/2, 120);
-  ctx.strokeText(score, canvas.width/2, 210);
-  ctx.fillText(score, canvas.width/2, 210);
+  ctx.strokeText(score, canvas.width/2, 180);
+  ctx.fillText(score, canvas.width/2, 180);
 
   // Add event listener to canvas element 
  
@@ -630,19 +630,19 @@ function punch(){
   
 }
 if (upgrade === true) {
-  samurai.width = 85;
+  samurai.width = 205;
 } else {
   samurai.width = 75;
 }
 // 
- let saberright1 = [0.2, 1.5,0];
- let saberright2 = [0.2, 2.5, 100];
- let saberright3 = [0.2, 3.5, 100];
+ let saberright1 = [0.15, 1.5,100];
+ let saberright2 = [0.15, 2.5, 100];
+ let saberright3 = [0.15, 3.5, 100];
 
 
- let saberleft1 = [0.05,6.5,50];
- let saberleft2 = [.05,5.5,50];
- let saberleft3 = [.05,4.5,50];
+ let saberleft1 = [0.1,6.5,50];
+ let saberleft2 = [0.1,5.5,50];
+ let saberleft3 = [0.1,4.5,50];
 
 
 function saber(){
