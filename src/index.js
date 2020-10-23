@@ -438,7 +438,29 @@ function animate() {
         }
       }
     else if (upgrade === true && (samurai.x - 50 === arrows[i].x || (samurai.x + 215 + samurai.width === arrows[i].x))) {
-
+      let arrow = arrows.shift();
+        if (arrow.status === "gold") {
+          upgrade = true;
+          if (soundEffects) {
+            upgradeSound.play();
+          }
+        }
+        if (soundEffects) {
+          if (upgrade === true) {
+            swordhitSound.play();
+          } else {
+            hitSound.play();
+          }
+          
+        }
+        score += 1;
+        healthAdd += 1;
+        // console.log(healthAdd)
+        // console.log(samurai.health)
+        // console.log(samurai.health)
+        if (healthAdd % 5 === 0 && samurai.health > 0) {
+          samurai.health -= 1;
+        } 
     }
     else if (samurai.x + 10 === arrows[i].x || (samurai.x + 155 + samurai.width === arrows[i].x)) {
       
@@ -608,7 +630,7 @@ function punch(){
   
 }
 if (upgrade === true) {
-  samurai.width = 300;
+  samurai.width = 85;
 } else {
   samurai.width = 75;
 }
