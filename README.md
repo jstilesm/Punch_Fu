@@ -5,14 +5,14 @@
 * Punch Fu will be a relative clone of the [One Finger Death Punch](https://youtu.be/R1j0VE6d-xE?t=7)
 
 
-* My App will allow a player to defend theirself against projectiles from both sides. Specific keys on a keyboard must be pressed at a specific time to destroy incoming projectiles. Three lives to last as long as you can!
+* My App will allow a player to defend theirself against projectiles from both sides. The left and right mouse buttons must be pressed at a specific time to destroy incoming projectiles. Three lives to last as long as you can!
 
 ### MVPS
 1. General layout with central character
 2. Projectiles, Randomness and origin from both sides
 3. Destruction of Projectiles given response.
 4. Visual display of different projectiles and background
-5. Fight music implementation
+5. Upgrade with Beam Sword
 Bonus: Response movement of the central character 
 
 ### Technologies, Libraries, APIs
@@ -45,4 +45,13 @@ Create controls to increase the speed, thus the difficulty, of the game.
 Bonus Features:
 Movement of the stick figure character corresponding to which arrow it destroys. 
 Combo score values based on characters pressed.
+
+### Challenges and Development
+
+* Originally decided to base hitting "arrows" based off of letter inputs, but decided to make the character punch based off of left and right clicks
+
+* Had a lot of issues originally getting the character to punch, yet was able to use frames of sprite pages to both show a punch as well as a sword swing.
+
+* Had to use timeInterval to create a game engine that allowed for a rising difficulty over time.
+
 
