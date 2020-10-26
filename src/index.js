@@ -140,6 +140,13 @@ function addArrow(direction) {
     arrow.speed = arrow.speed *  -1;
   }
   arrows.push(arrow);
+  if (arrows[0].x < canvas.width || arrows[0].x > 0) {
+
+
+      first = true;
+    
+    
+  }
 }
 function specialArrow(direction) {
   let rand = (Math.floor(Math.random() * Math.floor(10)) + 1);
@@ -185,6 +192,7 @@ function specialArrow(direction) {
 
 
 
+
 let score = 0;
 
 
@@ -222,7 +230,7 @@ function addArrowsRight() {
   // 1000
   let shotspeed = 3000 + Math.floor(Math.random()* 5000);
   // let shotspeed2 = shotspeed + 2000; 
-
+    
     setInterval(() => {
       addArrow('right'); 
       } ,shotspeed);
@@ -230,7 +238,7 @@ function addArrowsRight() {
 function addArrowsLeft() {
   // 1000
   let shotspeed = 3000 + Math.floor(Math.random()* 5000);
-    
+   
     setInterval(() => {
       addArrow('left'); 
       } ,shotspeed);
@@ -238,7 +246,7 @@ function addArrowsLeft() {
 
 // add special arrow to the game
 function addspecialArrow() {
-  let specialspeed = /* 20000 + */Math.floor(Math.random()* 5000);
+  let specialspeed =  20000 + Math.floor(Math.random()* 5000);
   let random = Math.floor(Math.random() * 1);
   if (random === 1) {
     setInterval(() => {
@@ -264,8 +272,12 @@ let game = "ongoing";
 let left = false;
 let upgrade = false;
 let upgradeTimer = 500;
+let first = false;
+
 
 function animate() {
+
+  
   if (musicOn) {
     soundTrack.play();
     ctx.drawImage(unmuted, 0, 0, canvas.width, canvas.height);
@@ -316,7 +328,7 @@ function animate() {
   
   if (marker === 1) {
     addspecialArrow();
-    console.log('hi');
+    // console.log('hi');
   }
 
   ctx.clearRect(0,0, canvas.width, canvas.height);
@@ -368,6 +380,25 @@ function animate() {
   ctx.fillText("Score", canvas.width/2, 120);
   ctx.strokeText(score, canvas.width/2, 180);
   ctx.fillText(score, canvas.width/2, 180);
+ 
+  if (marker < 500) {
+
+    if (first === true) {
+      ctx.strokeText("GO", canvas.width/2, canvas.height/2);
+      ctx.fillText("GO", canvas.width/2, canvas.height/2);
+      setTimeout(() => {
+      first = -1; 
+      } ,1000);
+      
+      
+    } else if (first === false) {
+      ctx.strokeText("READY?", canvas.width/2, canvas.height/2);
+      ctx.fillText("READY?", canvas.width/2, canvas.height/2);
+  
+    }
+  }
+  
+
 
   // Add event listener to canvas element 
  
