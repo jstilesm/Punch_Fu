@@ -5,7 +5,7 @@
 * Punch Fu will be a relative clone of the [One Finger Death Punch](https://youtu.be/R1j0VE6d-xE?t=7)
 
 
-* My App will allow a player to defend theirself against projectiles from both sides. Specific keys on a keyboard must be pressed at a specific time to destroy incoming projectiles. Three lives to last as long as you can!
+* My App will allow a player to defend theirself against projectiles from both sides. The left and right mouse buttons must be pressed at a specific time to destroy incoming projectiles. Three lives to last as long as you can!
 
 ### MVPS
 1. General layout with central character
