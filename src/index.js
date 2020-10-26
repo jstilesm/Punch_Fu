@@ -224,7 +224,7 @@ function addArrowsRight() {
   // let shotspeed2 = shotspeed + 2000; 
 
     setInterval(() => {
-      specialArrow('right'); 
+      addArrow('right'); 
       } ,shotspeed);
 }
 function addArrowsLeft() {
@@ -232,13 +232,13 @@ function addArrowsLeft() {
   let shotspeed = 3000 + Math.floor(Math.random()* 5000);
     
     setInterval(() => {
-      specialArrow('left'); 
+      addArrow('left'); 
       } ,shotspeed);
 }
 
 // add special arrow to the game
 function addspecialArrow() {
-  let specialspeed = 20000 + Math.floor(Math.random()* 5000);
+  let specialspeed = /* 20000 + */Math.floor(Math.random()* 5000);
   let random = Math.floor(Math.random() * 1);
   if (random === 1) {
     setInterval(() => {
@@ -316,6 +316,7 @@ function animate() {
   
   if (marker === 1) {
     addspecialArrow();
+    console.log('hi');
   }
 
   ctx.clearRect(0,0, canvas.width, canvas.height);
@@ -440,6 +441,7 @@ function animate() {
     else if (upgrade === true && (samurai.x - 50 === arrows[i].x || (samurai.x + 215 + samurai.width === arrows[i].x))) {
       let arrow = arrows.shift();
         if (arrow.status === "gold") {
+          upgradeTimer += 500;
           upgrade = true;
           if (soundEffects) {
             upgradeSound.play();
@@ -630,7 +632,7 @@ function punch(){
   
 }
 if (upgrade === true) {
-  samurai.width = 205;
+  samurai.width = 505;
 } else {
   samurai.width = 75;
 }
