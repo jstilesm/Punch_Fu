@@ -129,10 +129,13 @@ body {
   color: white;
   position:absolute;
   width: 600px;
-  left: 90%;
+  left: 85%;
   top: 1%;
   a {
     position: relative;
+  }
+  p {
+    margin-left: 40px;
   }
 }
 
@@ -146,6 +149,10 @@ body {
   width: 20%;
   
 
+}
+
+.angelist-image {
+  width: 20%;
 }
 
 .left-summary {
