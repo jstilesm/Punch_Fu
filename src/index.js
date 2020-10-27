@@ -299,6 +299,8 @@ function animate() {
   if (upgrade === true) {
     upgradeTimer -= 1;
     if (upgradeTimer === 0) {
+      samurai.y = 720;
+      samurai.width = 75;
       upgrade = false;
       if (soundEffects) {
         unupgradeSound.play();
@@ -474,6 +476,7 @@ function animate() {
         if (arrow.status === "gold") {
           upgradeTimer += 500;
           upgrade = true;
+          
           if (soundEffects) {
             upgradeSound.play();
           }
@@ -488,9 +491,6 @@ function animate() {
         }
         score += 1;
         healthAdd += 1;
-        // console.log(healthAdd)
-        // console.log(samurai.health)
-        // console.log(samurai.health)
         if (healthAdd % 5 === 0 && samurai.health > 0) {
           samurai.health -= 1;
         } 
@@ -516,9 +516,7 @@ function animate() {
         }
         score += 1;
         healthAdd += 1;
-        // console.log(healthAdd)
-        // console.log(samurai.health)
-        // console.log(samurai.health)
+      
         if (healthAdd % 5 === 0 && samurai.health > 0) {
           samurai.health -= 1;
         } 
@@ -662,11 +660,11 @@ function punch(){
   }
   
 }
-if (upgrade === true) {
-  samurai.width = 505;
-} else {
-  samurai.width = 75;
-}
+// if (upgrade === true) {
+//   samurai.width = 505;
+// } else {
+//   samurai.width = 75;
+// }
 // 
  let saberright1 = [0.15, 1.5,100];
  let saberright2 = [0.15, 2.5, 100];
@@ -691,6 +689,7 @@ function saber(){
       
   }
   else if (keys[37] && samurai.currentAction != 37) {
+    samurai.y = 730;
       if (soundEffects) {
         missSound.play();
 
