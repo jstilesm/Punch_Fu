@@ -297,8 +297,14 @@ function addspecialArrow() {
 // frame counter and after a certain ammount of frames
 let marker = 0;
 let healthAdd = 0;
-let musicOn = false;
-let soundEffects = false;
+// let musicOn = false;
+let musicOnstring = localStorage.getItem("music");
+let musicOn = musicOnstring == "true";
+console.log(musicOn);
+// let soundEffects = false;
+let soundEffectstring = localStorage.getItem("soundEffects");
+let soundEffects = soundEffectstring == "true";
+// console.log(soundEffects);
 let game = "ongoing";
 
 let upgrade = false;
@@ -306,22 +312,27 @@ let upgradeTimer = 500;
 let first = false;
 
 function animate() {
-  if (musicOn) {
+  if (musicOn == true) {
     soundTrack.play();
     ctx.drawImage(unmuted, 0, 0, canvas.width, canvas.height);
   }
   if (keys[80]) {
     soundTrack.stop();
     musicOn = false;
+    localStorage.setItem("music", musicOn + "");
+    console.log(localStorage);
   } else if (keys[79]) {
     musicOn = true;
+    localStorage.setItem("music", musicOn + "");
   }
   if (keys[73]) {
     soundEffects = false;
+    localStorage.setItem("soundEffects", soundEffects + "");
   }
 
   if (keys[85]) {
     soundEffects = true;
+    localStorage.setItem("soundEffects", soundEffects + "");
   }
   marker += 1;
   if (upgrade === true) {
@@ -360,7 +371,7 @@ function animate() {
 
   ctx.strokeText(score, 10, 50);
   ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-  if (musicOn) {
+  if (musicOn == true) {
     ctx.font = "Bold 30px Verdana";
     ctx.fillStyle = "white";
     ctx.fillText("Music", canvas.width / 8 - 120, canvas.height / 8 - 80);
@@ -371,7 +382,7 @@ function animate() {
     ctx.fillText("Music", canvas.width / 8 - 120, canvas.height / 8 - 80);
     ctx.drawImage(muted, 0, 50, canvas.width / 10, canvas.height / 8);
   }
-  if (soundEffects) {
+  if (soundEffects == true) {
     ctx.font = "Bold 30px Verdana";
     ctx.fillStyle = "white";
     ctx.fillText("Sound FX", 1475, 50);
