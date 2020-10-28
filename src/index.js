@@ -300,7 +300,7 @@ let healthAdd = 0;
 // let musicOn = false;
 let musicOnstring = localStorage.getItem("music");
 let musicOn = musicOnstring == "true";
-console.log(musicOn);
+// console.log(musicOn);
 // let soundEffects = false;
 let soundEffectstring = localStorage.getItem("soundEffects");
 let soundEffects = soundEffectstring == "true";
@@ -320,7 +320,7 @@ function animate() {
     soundTrack.stop();
     musicOn = false;
     localStorage.setItem("music", musicOn + "");
-    console.log(localStorage);
+    // console.log(localStorage);
   } else if (keys[79]) {
     musicOn = true;
     localStorage.setItem("music", musicOn + "");
