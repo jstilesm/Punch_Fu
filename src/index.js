@@ -494,8 +494,8 @@ function animate() {
       }
     } else if (
       upgrade === true &&
-      (samurai.x - 50 === arrows[i].x ||
-        samurai.x + 215 + samurai.width === arrows[i].x)
+      samurai.x - 50 <= arrows[i].x &&
+      samurai.x + 255 + samurai.width >= arrows[i].x
     ) {
       if (samurai.currentAction === 39 || samurai.currentAction === 37) {
         let arrow = arrows.shift();
@@ -521,8 +521,8 @@ function animate() {
         }
       }
     } else if (
-      samurai.x + 10 === arrows[i].x ||
-      samurai.x + 155 + samurai.width === arrows[i].x
+      samurai.x + 10 <= arrows[i].x &&
+      samurai.x + 155 + samurai.width >= arrows[i].x
     ) {
       if (samurai.currentAction === 39 || samurai.currentAction === 37) {
         let arrow = arrows.shift();
