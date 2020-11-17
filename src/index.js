@@ -495,7 +495,7 @@ function animate() {
     } else if (
       upgrade === true &&
       samurai.x - 50 <= arrows[i].x &&
-      samurai.x + 255 + samurai.width >= arrows[i].x
+      arrows[i].x <= samurai.x
     ) {
       if (samurai.currentAction === 39 || samurai.currentAction === 37) {
         let arrow = arrows.shift();
@@ -521,8 +521,59 @@ function animate() {
         }
       }
     } else if (
-      samurai.x + 10 <= arrows[i].x &&
-      samurai.x + 155 + samurai.width >= arrows[i].x
+      upgrade === true &&
+      samurai.x + 255 + samurai.width >= arrows[i].x &&
+      arrows[i].x >= samurai.x + samurai.width
+    ) {
+      if (samurai.currentAction === 39 || samurai.currentAction === 37) {
+        let arrow = arrows.shift();
+        if (arrow.status === "gold") {
+          upgradeTimer += 500;
+          upgrade = true;
+
+          if (soundEffects) {
+            upgradeSound.play();
+          }
+        }
+        if (soundEffects) {
+          if (upgrade === true) {
+            swordhitSound.play();
+          } else {
+            hitSound.play();
+          }
+        }
+        score += 1;
+        healthAdd += 1;
+        if (healthAdd % 5 === 0 && samurai.health > 0) {
+          samurai.health -= 1;
+        }
+      }
+    } else if (samurai.x + 10 <= arrows[i].x && arrows[i].x <= samurai.x) {
+      if (samurai.currentAction === 39 || samurai.currentAction === 37) {
+        let arrow = arrows.shift();
+        if (arrow.status === "gold") {
+          upgrade = true;
+          if (soundEffects) {
+            upgradeSound.play();
+          }
+        }
+        if (soundEffects) {
+          if (upgrade === true) {
+            swordhitSound.play();
+          } else {
+            hitSound.play();
+          }
+        }
+        score += 1;
+        healthAdd += 1;
+
+        if (healthAdd % 5 === 0 && samurai.health > 0) {
+          samurai.health -= 1;
+        }
+      }
+    } else if (
+      samurai.x + 155 + samurai.width >= arrows[i].x &&
+      arrows[i].x >= samurai.x + samurai.width
     ) {
       if (samurai.currentAction === 39 || samurai.currentAction === 37) {
         let arrow = arrows.shift();
